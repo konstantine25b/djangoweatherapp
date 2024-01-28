@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather Detector</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      background-color: #f8f8f8;
+    }
+
+    nav {
+      padding: 15px 0;
+    }
+
+    .search-container {
+      margin-top: 30px;
+    }
+
+    .weather-container {
+      margin-top: 20px;
+    }
+
+    .weather-details {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="row" style="background: grey; color: white;">
+    <div class="col-md-12 text-center">
+      <h1>Weather Detector</h1>
+    </div>
+  </nav>
+
+  <div class="container search-container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form action="" method="post" class="input-group">
+          {% csrf_token %}
+          <input type="text" class="form-control" name="city" placeholder="Search">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container weather-container">
+    <div class="row">
+      {% if data.country_code %}
+      <div class="col-md-6 col-md-offset-3 weather-details">
+        <h1>{{ city }}</h1>
+        <h3>Country Code: {{ data.country_code }}</h3>
+        <h5>Coordinate: {{ data.coordinate }}</h5>
+        <h5>Temperature: {{ data.temp }}</h5>
+        <h5>Pressure: {{ data.pressure }} </h5>
+        <h5>Humidity: {{ data.humidity }}</h5>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+
+</html>
